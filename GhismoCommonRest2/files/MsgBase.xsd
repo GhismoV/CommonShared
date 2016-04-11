@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:ghm="msg.jaxb.rest.common.ghismo.it" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="msg.jaxb.rest.common.ghismo.it" elementFormDefault="qualified" version="1.0">
+	<xs:element name="Bean" type="ghm:BeanType"/>
+	<xs:complexType name="ButtonType">
+		<xs:complexContent>
+			<xs:extension base="ghm:PageObjectBaseType">
+				<xs:sequence>
+					<xs:element name="image_url" type="xs:string" minOccurs="0"/>
+					<xs:element name="auto_send" type="xs:boolean" minOccurs="0"/>
+					<xs:element name="async" type="xs:boolean" minOccurs="0"/>
+					<xs:element name="flg_visibility" type="ghm:VisibilityEnum" minOccurs="0"/>
+					<xs:element name="action" type="ghm:ActionType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PageObjectBaseType">
+		<xs:complexContent>
+			<xs:extension base="ghm:BaseType">
+				<xs:sequence>
+					<xs:element name="errors" type="ghm:ErrorType" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="id" type="xs:string"/>
+					<xs:element name="label" type="xs:string" minOccurs="0"/>
+					<xs:element name="sublabel" type="xs:string" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="BaseType">
+		<xs:sequence/>
+	</xs:complexType>
+	<xs:complexType name="ActionType">
+		<xs:complexContent>
+			<xs:extension base="ghm:BaseType">
+				<xs:sequence>
+					<xs:element name="url" type="xs:string"/>
+					<xs:element name="url_params" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="key_params" type="xs:boolean" minOccurs="0"/>
+					<xs:element name="url_method" type="ghm:RequestMethodEnum" minOccurs="0"/>
+					<xs:element name="url_body" type="xs:string" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="BeanType">
+		<xs:complexContent>
+			<xs:extension base="ghm:BaseType">
+				<xs:sequence>
+					<xs:element name="errors" type="ghm:ErrorType" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="function_name" type="xs:string" minOccurs="0"/>
+					<xs:element name="function_descr" type="xs:string" minOccurs="0"/>
+					<xs:element name="mac" type="xs:string" minOccurs="0"/>
+					<xs:element name="session" type="ghm:SessionType"/>
+					<xs:element name="data_out" type="ghm:OutputType" minOccurs="0"/>
+					<xs:element name="data_fields" type="ghm:DataFieldsType" minOccurs="0"/>
+					<xs:element name="data_lists" type="ghm:DataListsType" minOccurs="0"/>
+					<xs:element name="data_buttons" type="ghm:DataButtonsType" minOccurs="0"/>
+					<xs:element name="menu" type="xs:anyType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ErrorType">
+		<xs:complexContent>
+			<xs:extension base="ghm:BaseType">
+				<xs:sequence>
+					<xs:element name="code" type="xs:string" minOccurs="0"/>
+					<xs:element name="msg" type="xs:string" minOccurs="0"/>
+					<xs:element name="sev" type="ghm:ErrorSeverityEnum" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="SessionType">
+		<xs:complexContent>
+			<xs:extension base="ghm:BaseType">
+				<xs:sequence>
+					<xs:element name="req_id" type="xs:string" minOccurs="0"/>
+					<xs:element name="sess_id" type="xs:string"/>
+					<xs:element name="lang" type="xs:string" minOccurs="0"/>
+					<xs:element name="device" type="xs:string" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="OutputType">
+		<xs:complexContent>
+			<xs:extension base="ghm:BaseType">
+				<xs:sequence>
+					<xs:element name="entities" type="ghm:OutEntityType" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="OutEntityType">
+		<xs:complexContent>
+			<xs:extension base="ghm:BaseType">
+				<xs:sequence>
+					<xs:element name="errors" type="ghm:ErrorType" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="key" type="xs:string" minOccurs="0"/>
+					<xs:element name="type" type="ghm:DataTypeEnum" minOccurs="0"/>
+					<xs:element name="value" type="xs:string" minOccurs="0"/>
+					<xs:element name="values" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="entities" type="ghm:OutEntityType" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DataFieldsType">
+		<xs:complexContent>
+			<xs:extension base="ghm:BaseType">
+				<xs:sequence>
+					<xs:element name="fields" type="ghm:FieldType" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="FieldType">
+		<xs:complexContent>
+			<xs:extension base="ghm:PageObjectBaseType">
+				<xs:sequence>
+					<xs:element name="editable" type="xs:boolean" minOccurs="0"/>
+					<xs:element name="multivalue" type="xs:boolean" minOccurs="0"/>
+					<xs:element name="hidden" type="xs:boolean" minOccurs="0"/>
+					<xs:element name="secure" type="xs:boolean" minOccurs="0"/>
+					<xs:element name="value" type="xs:string" minOccurs="0"/>
+					<xs:element name="values" type="xs:anyType" minOccurs="0"/>
+					<xs:element name="options" type="ghm:FieldOptionType" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="mandatory" type="xs:boolean" minOccurs="0"/>
+					<xs:element name="minlength" type="xs:int" minOccurs="0"/>
+					<xs:element name="maxlength" type="xs:int" minOccurs="0"/>
+					<xs:element name="minvalue" type="xs:string" minOccurs="0"/>
+					<xs:element name="maxvalue" type="xs:string" minOccurs="0"/>
+					<xs:element name="type" type="ghm:DataTypeEnum" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="FieldOptionType">
+		<xs:complexContent>
+			<xs:extension base="ghm:BaseType">
+				<xs:sequence>
+					<xs:element name="label" type="xs:string" minOccurs="0"/>
+					<xs:element name="value" type="xs:string"/>
+					<xs:element name="selected" type="xs:boolean" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ListType">
+		<xs:complexContent>
+			<xs:extension base="ghm:PageObjectBaseType">
+				<xs:sequence>
+					<xs:element name="entities" type="ghm:ListEntityType" maxOccurs="unbounded"/>
+					<xs:element name="records" type="ghm:ListRecordType" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="record_buttons" type="ghm:ListRecordActionType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="list_buttons" type="ghm:ListButtonType" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ListEntityType">
+		<xs:complexContent>
+			<xs:extension base="ghm:BaseType">
+				<xs:sequence>
+					<xs:element name="entity_id" type="xs:string"/>
+					<xs:element name="label" type="xs:string" minOccurs="0"/>
+					<xs:element name="data_ord" type="xs:int"/>
+					<xs:element name="key_ord" type="xs:int" minOccurs="0"/>
+					<xs:element name="type" type="ghm:DataTypeEnum" minOccurs="0"/>
+					<xs:element name="hidden" type="xs:boolean" minOccurs="0"/>
+					<xs:element name="optional" type="xs:boolean" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ListRecordType">
+		<xs:complexContent>
+			<xs:extension base="ghm:BaseType">
+				<xs:sequence>
+					<xs:element name="selected" type="xs:boolean" minOccurs="0"/>
+					<xs:element name="data" type="xs:string" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ListRecordActionType">
+		<xs:complexContent>
+			<xs:extension base="ghm:BaseType">
+				<xs:sequence>
+					<xs:element name="label" type="xs:string" minOccurs="0"/>
+					<xs:element name="sublabel" type="xs:string" minOccurs="0"/>
+					<xs:element name="image_url" type="xs:string" minOccurs="0"/>
+					<xs:element name="flg_visibility" type="ghm:VisibilityEnum" minOccurs="0"/>
+					<xs:element name="pilot_id" type="xs:string"/>
+					<xs:element name="pilot_enable_values" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="pilot_disable_values" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="pilot_hidden_values" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="action" type="ghm:ActionType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ListButtonType">
+		<xs:complexContent>
+			<xs:extension base="ghm:BaseType">
+				<xs:sequence>
+					<xs:element name="list_btn_id" type="xs:string"/>
+					<xs:element name="label" type="xs:string" minOccurs="0"/>
+					<xs:element name="image_url" type="xs:string" minOccurs="0"/>
+					<xs:element name="flg_visibility" type="ghm:VisibilityEnum" minOccurs="0"/>
+					<xs:element name="action" type="ghm:ActionType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DataListsType">
+		<xs:complexContent>
+			<xs:extension base="ghm:BaseType">
+				<xs:sequence>
+					<xs:element name="lists" type="ghm:ListType" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DataButtonsType">
+		<xs:complexContent>
+			<xs:extension base="ghm:BaseType">
+				<xs:sequence>
+					<xs:element name="buttons" type="ghm:ButtonType" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="FieldValueType">
+		<xs:complexContent>
+			<xs:extension base="ghm:BaseType">
+				<xs:sequence>
+					<xs:element name="id" type="xs:string"/>
+					<xs:element name="label" type="xs:string" minOccurs="0"/>
+					<xs:element name="value" type="xs:string" minOccurs="0"/>
+					<xs:element name="values" type="xs:string" minOccurs="0"/>
+					<xs:element name="options" type="ghm:FieldOptionType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="MenuType">
+		<xs:complexContent>
+			<xs:extension base="ghm:BaseType">
+				<xs:sequence>
+					<xs:element name="id" type="xs:string"/>
+					<xs:element name="label" type="xs:string"/>
+					<xs:element name="url" type="xs:string" minOccurs="0"/>
+					<xs:element name="menu_children" type="ghm:MenuType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="image_url" type="xs:string" minOccurs="0"/>
+					<xs:element name="disabled" type="xs:boolean" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="VisibilityEnum">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="enabled"/>
+			<xs:enumeration value="disabled"/>
+			<xs:enumeration value="hidden"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RequestMethodEnum">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="get"/>
+			<xs:enumeration value="post"/>
+			<xs:enumeration value="put"/>
+			<xs:enumeration value="delete"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ErrorSeverityEnum">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="info"/>
+			<xs:enumeration value="warning"/>
+			<xs:enumeration value="error"/>
+			<xs:enumeration value="fatal"/>
+			<xs:enumeration value="secure"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DataTypeEnum">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="string"/>
+			<xs:enumeration value="number"/>
+			<xs:enumeration value="decimal"/>
+			<xs:enumeration value="boolean"/>
+			<xs:enumeration value="date"/>
+			<xs:enumeration value="time"/>
+			<xs:enumeration value="dateTime"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
