@@ -26,9 +26,7 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType name="BaseType">
-		<xs:sequence/>
-	</xs:complexType>
+	<xs:complexType name="BaseType"/>
 	<xs:complexType name="ActionType">
 		<xs:complexContent>
 			<xs:extension base="ghm:BaseType">
@@ -123,9 +121,11 @@
 					<xs:element name="multivalue" type="xs:boolean" minOccurs="0"/>
 					<xs:element name="hidden" type="xs:boolean" minOccurs="0"/>
 					<xs:element name="secure" type="xs:boolean" minOccurs="0"/>
-					<xs:element name="value" type="xs:string" minOccurs="0"/>
-					<xs:element name="values" type="xs:anyType" minOccurs="0"/>
-					<xs:element name="options" type="ghm:FieldOptionType" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:choice>
+						<xs:element name="value" type="xs:string" minOccurs="0"/>
+						<xs:element name="values" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:choice>
+					<xs:element name="options" type="ghm:FieldOptionType" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="mandatory" type="xs:boolean" minOccurs="0"/>
 					<xs:element name="minlength" type="xs:int" minOccurs="0"/>
 					<xs:element name="maxlength" type="xs:int" minOccurs="0"/>

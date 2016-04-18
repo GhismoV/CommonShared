@@ -6,12 +6,13 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.AnnotationIntrospector;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair;
 import com.fasterxml.jackson.databind.introspect.JacksonAnnotationIntrospector;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.module.jaxb.JaxbAnnotationIntrospector;
 
-import it.ghismo.common.rest.providers.BooleanJsonSerializer;
+//import it.ghismo.common.rest.providers.BooleanJsonSerializer;
 import it.ghismo.common.rest.providers.CustomCharacterEscapes;
 import it.ghismo.common.rest.providers.StringJsonDeserializer;
 import it.ghismo.common.rest.providers.StringJsonSerializer;
@@ -46,12 +47,17 @@ public class JsonUtil<T> {
         mapper.setAnnotationIntrospector(pair);
         
     	mapper.setSerializationInclusion(Include.NON_EMPTY);
+    	mapper.configure(SerializationFeature.WRITE_EMPTY_JSON_ARRAYS, false);
+    	mapper.configure(SerializationFeature.WRITE_NULL_MAP_VALUES, false);
 
         mapper.getFactory().setCharacterEscapes(new CustomCharacterEscapes());
         
 		customModule = new SimpleModule("customModule", new Version(1,0,0,null,null,null));
 		customModule.addDeserializer(String.class, new StringJsonDeserializer());
+		/* tolto perche preferisco ottenere i boolean come valori booleani e non stringa
 		customModule.addSerializer(Boolean.class, new BooleanJsonSerializer());
+		*/
+		
 		customModule.addSerializer(String.class, new StringJsonSerializer());
 
     	

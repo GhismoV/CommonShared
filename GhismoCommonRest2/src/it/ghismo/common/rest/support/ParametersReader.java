@@ -15,6 +15,10 @@ public class ParametersReader extends it.ghismo.common.webapps.support.Parameter
 		super(confUrl);
 	}
 
+	public String get(String key) {
+		return this.get(key, (String)null);
+	}
+
 	public String get(String key, String defaultValue) {
 		return super.get(key, CommonRestServlet.getContextParameterMap(), defaultValue);
 	}

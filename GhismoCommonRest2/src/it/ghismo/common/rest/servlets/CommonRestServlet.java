@@ -68,8 +68,8 @@ public class CommonRestServlet
       if (appVersion == null) {
         appVersion = "1.0";
       }
-      contextParametersMap.putParam(ContextParametersMap.PARAM__APP__NAME, appName);
-      contextParametersMap.putParam(ContextParametersMap.PARAM__APP__VERSION, appVersion);
+      contextParametersMap.put(ContextParametersMap.PARAM__APP__NAME, appName);
+      contextParametersMap.put(ContextParametersMap.PARAM__APP__VERSION, appVersion);
       
       
 	  // **************** gestione context-root ***************
@@ -82,7 +82,7 @@ public class CommonRestServlet
       } else {
         System.out.println("Context-root nulla, i percorsi dei file di configurazione devono essere assoluti.");
       }
-      contextParametersMap.putParam(ContextParametersMap.PARAM__APP__CONTEXT_ROOT_PATH, contextRoot);
+      contextParametersMap.put(ContextParametersMap.PARAM__APP__CONTEXT_ROOT_PATH, contextRoot);
       
 
 	  // **************** gestione path dei files di configurazione ***************
@@ -128,7 +128,7 @@ public class CommonRestServlet
         absConfPath += fs;
       }
       absConfPath = Util.sysProp2Value(absConfPath, contextParametersMap.getContextParametersMap());
-      contextParametersMap.putParam(ContextParametersMap.PARAM__APP__CONFIG_PATH, absConfPath);
+      contextParametersMap.put(ContextParametersMap.PARAM__APP__CONFIG_PATH, absConfPath);
       
 
 	  // **************** gestione del file di configurazione principale ***************
@@ -196,8 +196,12 @@ public class CommonRestServlet
         freemarkerConfigProps.load(new FileReader(freemarkerFilePath));
         freemarkerCfg.setSettings(freemarkerConfigProps);
         freemarkerCfg.setTemplateLoader(new CustomWebappTemplateLoader(getServletContext(), confReader));
-        System.out.println("ghismo - marameo loader è : " + freemarkerCfg.getTemplateLoader().getClass().getName());
         freemarkerCfg.setLogTemplateExceptions(true);
+
+        freemarkerCfg.setSharedVariable("sysprop", System.getProperties());
+        freemarkerCfg.setSharedVariable("context", contextParametersMap);
+        freemarkerCfg.setSharedVariable("parameters", confReader);
+
       } catch (IOException e2) {
         Log.warn("Errore durante il recupero del file di configurazione di Freemarker: " + freemarkerFilePath + "\n" + ExceptionUtil.exceptionToText(e2));
       }

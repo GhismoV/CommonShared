@@ -38,8 +38,6 @@ public class CustomWebappTemplateLoader extends WebappTemplateLoader {
 
 	public Object findTemplateSource(String arg0) throws IOException {
 		Object ret = null;
-		System.out.println("ghismo - findTemplateSource - start: arg0 = " + arg0);
-
 		String[] tmpArray = arg0 != null ? arg0.split(COMPLEX_TEMPLATE_NAME_SEPARATOR) : null;
 		String simpleTemplateName = "";
 		String prefix = null;
@@ -68,7 +66,6 @@ public class CustomWebappTemplateLoader extends WebappTemplateLoader {
 		int i = 0;
 		do {
 			currentPath = (String)templatesPaths.get(i++);
-			System.out.println("ghismo - findTemplateSource - process path: " + currentPath);
 			ret = super.findTemplateSource(currentPath);
 		} while ((ret == null) && (i < templatesPaths.size()));
 		return ret;
