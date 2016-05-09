@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  * <pre>
  * &lt;complexType name="DataButtonsType">
  *   &lt;complexContent>
- *     &lt;extension base="{msg.jaxb.rest.common.ghismo.it}BaseType">
+ *     &lt;extension base="{msg.jaxb.rest.common.ghismo.it}ServerBaseTranslateContainerType">
  *       &lt;sequence>
  *         &lt;element name="buttons" type="{msg.jaxb.rest.common.ghismo.it}ButtonType" maxOccurs="unbounded"/>
  *       &lt;/sequence>
@@ -33,7 +33,7 @@ import javax.xml.bind.annotation.XmlType;
     "buttons"
 })
 public class DataButtonsType
-    extends BaseType
+    extends ServerBaseTranslateContainerType
 {
 
     @XmlElement(required = true)

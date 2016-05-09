@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  * <pre>
  * &lt;complexType name="DataFieldsType">
  *   &lt;complexContent>
- *     &lt;extension base="{msg.jaxb.rest.common.ghismo.it}BaseType">
+ *     &lt;extension base="{msg.jaxb.rest.common.ghismo.it}ServerBaseTranslateContainerType">
  *       &lt;sequence>
  *         &lt;element name="fields" type="{msg.jaxb.rest.common.ghismo.it}FieldType" maxOccurs="unbounded"/>
  *       &lt;/sequence>
@@ -33,7 +33,7 @@ import javax.xml.bind.annotation.XmlType;
     "fields"
 })
 public class DataFieldsType
-    extends BaseType
+    extends ServerBaseTranslateContainerType
 {
 
     @XmlElement(required = true)

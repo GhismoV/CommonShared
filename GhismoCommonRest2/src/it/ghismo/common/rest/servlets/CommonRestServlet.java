@@ -22,21 +22,24 @@ import freemarker.cache.MruCacheStorage;
 import freemarker.template.Configuration;
 import freemarker.template.TemplateExceptionHandler;
 import freemarker.template.TemplateModelException;
+import it.ghismo.common.rest.support.Language;
 import it.ghismo.common.rest.support.Log;
 import it.ghismo.common.rest.support.ParametersReader;
 import it.ghismo.common.rest.support.freemarker.CustomWebappTemplateLoader;
+import it.ghismo.common.rest.support.session.SessionsManagement;
 import it.ghismo.common.utils.ExceptionUtil;
 import it.ghismo.common.utils.Util;
 import it.ghismo.common.webapps.support.ContextParametersMap;
 
-public class CommonRestServlet
-  extends ServletContainer
-{
+public class CommonRestServlet extends ServletContainer {
+	
   private static final long serialVersionUID = -1256706285927312003L;
   public static final String SERVLET_NAME = "CommonRestServlet";
   public static final String DEFAULT_LANGUAGE = "it";
+
   protected static final String DEFAULT_CONF_FILE_NAME = "conf.properties";
   protected static final String DEFAULT_CONF_PATH = "conf";
+  
   protected static boolean isInitialised = false;
   protected static ParametersReader confReader;
   protected static boolean isUrlProvider = false;
@@ -44,11 +47,10 @@ public class CommonRestServlet
   public static ContextParametersMap contextParametersMap = null;
   private static Configuration freemarkerCfg = null;
   
-  public synchronized void init()
-    throws ServletException
-  {
-    if (!isInitialised)
-    {
+  protected static SessionsManagement sessionsManagement = new SessionsManagement();
+  
+  public synchronized void init() throws ServletException {
+    if (!isInitialised) {
       super.init();
       
 		// TODO : ghismo - codice per simulare le proprietà di sistema
@@ -185,6 +187,19 @@ public class CommonRestServlet
       Log.init(getContextParameterMap(), confReader);
       /********************************************************/
       
+      /********************************************************/
+      /*********** Inizializzazione Lingue ********************/
+      /********************************************************/
+      try {
+    	  new Language(confReader, Language.LANGUAGE_ITALIAN);
+    	  new Language(confReader, Language.LANGUAGE_ENGLISH);
+    	  new Language(confReader, Language.LANGUAGE_GERMAN);
+    	  new Language(confReader, Language.LANGUAGE_FRENCH);
+      } catch (Exception e) {
+    	  Log.error(ExceptionUtil.exceptionToText(e));
+      }
+      /********************************************************/
+      
 
       /********************************************************/
       /*********** Configurazione Freemarker ******************/
@@ -285,13 +300,9 @@ public class CommonRestServlet
     return result;
   }
   
-  public static ParametersReader getParametersReader()
-  {
-    return confReader;
-  }
+  public static ParametersReader getParametersReader() { return confReader; }
+  public static Configuration getFreemarkerConfiguration() { return freemarkerCfg; }
+  public static SessionsManagement getSessionsManagement() { return sessionsManagement; }
   
-  public static Configuration getFreemarkerConfiguration()
-  {
-    return freemarkerCfg;
-  }
+  
 }

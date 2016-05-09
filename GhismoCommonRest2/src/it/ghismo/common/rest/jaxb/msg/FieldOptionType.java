@@ -15,7 +15,7 @@ import javax.xml.bind.annotation.XmlType;
  * <pre>
  * &lt;complexType name="FieldOptionType">
  *   &lt;complexContent>
- *     &lt;extension base="{msg.jaxb.rest.common.ghismo.it}BaseType">
+ *     &lt;extension base="{msg.jaxb.rest.common.ghismo.it}ServerBaseTranslateType">
  *       &lt;sequence>
  *         &lt;element name="label" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="value" type="{http://www.w3.org/2001/XMLSchema}string"/>
@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlType;
     "selected"
 })
 public class FieldOptionType
-    extends BaseType
+    extends ServerBaseTranslateType
 {
 
     protected String label;

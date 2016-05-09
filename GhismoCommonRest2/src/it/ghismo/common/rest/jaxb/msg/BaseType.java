@@ -27,22 +27,16 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "BaseType")
 @XmlSeeAlso({
     BeanType.class,
-    ErrorType.class,
-    DataFieldsType.class,
-    DataButtonsType.class,
+    ServerTranslateAttributeType.class,
     ListRecordType.class,
-    ListEntityType.class,
     FieldValueType.class,
-    MenuType.class,
     OutEntityType.class,
     SessionType.class,
-    DataListsType.class,
+    ServerTranslateContainerType.class,
     OutputType.class,
-    FieldOptionType.class,
-    ListButtonType.class,
+    ServerTranslateType.class,
     ActionType.class,
-    PageObjectBaseType.class,
-    ListRecordActionType.class
+    ServerBaseTranslateContainerType.class
 })
 public class BaseType {
 

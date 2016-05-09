@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  * <pre>
  * &lt;complexType name="MenuType">
  *   &lt;complexContent>
- *     &lt;extension base="{msg.jaxb.rest.common.ghismo.it}BaseType">
+ *     &lt;extension base="{msg.jaxb.rest.common.ghismo.it}ServerBaseTranslateType">
  *       &lt;sequence>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="label" type="{http://www.w3.org/2001/XMLSchema}string"/>
@@ -43,7 +43,7 @@ import javax.xml.bind.annotation.XmlType;
     "disabled"
 })
 public class MenuType
-    extends BaseType
+    extends ServerBaseTranslateType
 {
 
     @XmlElement(required = true)

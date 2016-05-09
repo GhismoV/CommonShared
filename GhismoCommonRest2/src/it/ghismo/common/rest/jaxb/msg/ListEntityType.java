@@ -15,10 +15,8 @@ import javax.xml.bind.annotation.XmlType;
  * <pre>
  * &lt;complexType name="ListEntityType">
  *   &lt;complexContent>
- *     &lt;extension base="{msg.jaxb.rest.common.ghismo.it}BaseType">
+ *     &lt;extension base="{msg.jaxb.rest.common.ghismo.it}PageObjectBaseType">
  *       &lt;sequence>
- *         &lt;element name="entity_id" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="label" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="data_ord" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="key_ord" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *         &lt;element name="type" type="{msg.jaxb.rest.common.ghismo.it}DataTypeEnum" minOccurs="0"/>
@@ -34,8 +32,6 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ListEntityType", propOrder = {
-    "entityId",
-    "label",
     "dataOrd",
     "keyOrd",
     "type",
@@ -43,12 +39,9 @@ import javax.xml.bind.annotation.XmlType;
     "optional"
 })
 public class ListEntityType
-    extends BaseType
+    extends PageObjectBaseType
 {
 
-    @XmlElement(name = "entity_id", required = true)
-    protected String entityId;
-    protected String label;
     @XmlElement(name = "data_ord")
     protected int dataOrd;
     @XmlElement(name = "key_ord")
@@ -56,54 +49,6 @@ public class ListEntityType
     protected DataTypeEnum type;
     protected Boolean hidden;
     protected Boolean optional;
-
-    /**
-     * Gets the value of the entityId property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getEntityId() {
-        return entityId;
-    }
-
-    /**
-     * Sets the value of the entityId property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setEntityId(String value) {
-        this.entityId = value;
-    }
-
-    /**
-     * Gets the value of the label property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getLabel() {
-        return label;
-    }
-
-    /**
-     * Sets the value of the label property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setLabel(String value) {
-        this.label = value;
-    }
 
     /**
      * Gets the value of the dataOrd property.

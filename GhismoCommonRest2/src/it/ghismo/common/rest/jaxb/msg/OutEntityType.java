@@ -21,10 +21,16 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="errors" type="{msg.jaxb.rest.common.ghismo.it}ErrorType" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="key" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="type" type="{msg.jaxb.rest.common.ghismo.it}DataTypeEnum" minOccurs="0"/>
- *         &lt;element name="value" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="values" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="entities" type="{msg.jaxb.rest.common.ghismo.it}OutEntityType" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;choice>
+ *           &lt;sequence>
+ *             &lt;element name="type" type="{msg.jaxb.rest.common.ghismo.it}DataTypeEnum" minOccurs="0"/>
+ *             &lt;choice>
+ *               &lt;element name="value" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *               &lt;element name="values" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
+ *             &lt;/choice>
+ *           &lt;/sequence>
+ *           &lt;element name="entities" type="{msg.jaxb.rest.common.ghismo.it}OutEntityType" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;/choice>
  *       &lt;/sequence>
  *     &lt;/extension>
  *   &lt;/complexContent>

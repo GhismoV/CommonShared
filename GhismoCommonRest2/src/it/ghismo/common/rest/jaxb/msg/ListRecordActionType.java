@@ -17,10 +17,8 @@ import javax.xml.bind.annotation.XmlType;
  * <pre>
  * &lt;complexType name="ListRecordActionType">
  *   &lt;complexContent>
- *     &lt;extension base="{msg.jaxb.rest.common.ghismo.it}BaseType">
+ *     &lt;extension base="{msg.jaxb.rest.common.ghismo.it}PageObjectBaseType">
  *       &lt;sequence>
- *         &lt;element name="label" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="sublabel" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="image_url" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="flg_visibility" type="{msg.jaxb.rest.common.ghismo.it}VisibilityEnum" minOccurs="0"/>
  *         &lt;element name="pilot_id" type="{http://www.w3.org/2001/XMLSchema}string"/>
@@ -38,8 +36,6 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ListRecordActionType", propOrder = {
-    "label",
-    "sublabel",
     "imageUrl",
     "flgVisibility",
     "pilotId",
@@ -49,11 +45,9 @@ import javax.xml.bind.annotation.XmlType;
     "action"
 })
 public class ListRecordActionType
-    extends BaseType
+    extends PageObjectBaseType
 {
 
-    protected String label;
-    protected String sublabel;
     @XmlElement(name = "image_url")
     protected String imageUrl;
     @XmlElement(name = "flg_visibility")
@@ -67,54 +61,6 @@ public class ListRecordActionType
     @XmlElement(name = "pilot_hidden_values")
     protected List<String> pilotHiddenValues;
     protected ActionType action;
-
-    /**
-     * Gets the value of the label property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getLabel() {
-        return label;
-    }
-
-    /**
-     * Sets the value of the label property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setLabel(String value) {
-        this.label = value;
-    }
-
-    /**
-     * Gets the value of the sublabel property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getSublabel() {
-        return sublabel;
-    }
-
-    /**
-     * Sets the value of the sublabel property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setSublabel(String value) {
-        this.sublabel = value;
-    }
 
     /**
      * Gets the value of the imageUrl property.

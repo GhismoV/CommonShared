@@ -14,10 +14,11 @@ import javax.xml.bind.annotation.XmlType;
  * <pre>
  * &lt;complexType name="ErrorType">
  *   &lt;complexContent>
- *     &lt;extension base="{msg.jaxb.rest.common.ghismo.it}BaseType">
+ *     &lt;extension base="{msg.jaxb.rest.common.ghismo.it}ServerBaseTranslateType">
  *       &lt;sequence>
  *         &lt;element name="code" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="msg" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="label" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="sev" type="{msg.jaxb.rest.common.ghismo.it}ErrorSeverityEnum" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/extension>
@@ -31,14 +32,16 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "ErrorType", propOrder = {
     "code",
     "msg",
+    "label",
     "sev"
 })
 public class ErrorType
-    extends BaseType
+    extends ServerBaseTranslateType
 {
 
     protected String code;
     protected String msg;
+    protected String label;
     protected ErrorSeverityEnum sev;
 
     /**
@@ -87,6 +90,30 @@ public class ErrorType
      */
     public void setMsg(String value) {
         this.msg = value;
+    }
+
+    /**
+     * Gets the value of the label property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getLabel() {
+        return label;
+    }
+
+    /**
+     * Sets the value of the label property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setLabel(String value) {
+        this.label = value;
     }
 
     /**

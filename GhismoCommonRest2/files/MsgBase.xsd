@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- edited with XMLSpy v2007 sp2 (http://www.altova.com) by Auriga (Auriga) -->
 <xs:schema xmlns:ghm="msg.jaxb.rest.common.ghismo.it" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="msg.jaxb.rest.common.ghismo.it" elementFormDefault="qualified" version="1.0">
 	<xs:element name="Bean" type="ghm:BeanType"/>
 	<xs:complexType name="ButtonType">
@@ -16,7 +17,7 @@
 	</xs:complexType>
 	<xs:complexType name="PageObjectBaseType">
 		<xs:complexContent>
-			<xs:extension base="ghm:BaseType">
+			<xs:extension base="ghm:ServerBaseTranslateType">
 				<xs:sequence>
 					<xs:element name="errors" type="ghm:ErrorType" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="id" type="xs:string"/>
@@ -53,17 +54,18 @@
 					<xs:element name="data_fields" type="ghm:DataFieldsType" minOccurs="0"/>
 					<xs:element name="data_lists" type="ghm:DataListsType" minOccurs="0"/>
 					<xs:element name="data_buttons" type="ghm:DataButtonsType" minOccurs="0"/>
-					<xs:element name="menu" type="xs:anyType" minOccurs="0"/>
+					<xs:element name="data_menu" type="ghm:DataMenuType" minOccurs="0"/>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
 	<xs:complexType name="ErrorType">
 		<xs:complexContent>
-			<xs:extension base="ghm:BaseType">
+			<xs:extension base="ghm:ServerBaseTranslateType">
 				<xs:sequence>
 					<xs:element name="code" type="xs:string" minOccurs="0"/>
 					<xs:element name="msg" type="xs:string" minOccurs="0"/>
+					<xs:element name="label" type="xs:string" minOccurs="0"/>
 					<xs:element name="sev" type="ghm:ErrorSeverityEnum" minOccurs="0"/>
 				</xs:sequence>
 			</xs:extension>
@@ -96,17 +98,23 @@
 				<xs:sequence>
 					<xs:element name="errors" type="ghm:ErrorType" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="key" type="xs:string" minOccurs="0"/>
-					<xs:element name="type" type="ghm:DataTypeEnum" minOccurs="0"/>
-					<xs:element name="value" type="xs:string" minOccurs="0"/>
-					<xs:element name="values" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
-					<xs:element name="entities" type="ghm:OutEntityType" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:choice>
+						<xs:sequence>
+							<xs:element name="type" type="ghm:DataTypeEnum" minOccurs="0"/>
+							<xs:choice>
+								<xs:element name="value" type="xs:string" minOccurs="0"/>
+								<xs:element name="values" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+							</xs:choice>
+						</xs:sequence>
+						<xs:element name="entities" type="ghm:OutEntityType" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:choice>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
 	<xs:complexType name="DataFieldsType">
 		<xs:complexContent>
-			<xs:extension base="ghm:BaseType">
+			<xs:extension base="ghm:ServerBaseTranslateContainerType">
 				<xs:sequence>
 					<xs:element name="fields" type="ghm:FieldType" maxOccurs="unbounded"/>
 				</xs:sequence>
@@ -138,7 +146,7 @@
 	</xs:complexType>
 	<xs:complexType name="FieldOptionType">
 		<xs:complexContent>
-			<xs:extension base="ghm:BaseType">
+			<xs:extension base="ghm:ServerBaseTranslateType">
 				<xs:sequence>
 					<xs:element name="label" type="xs:string" minOccurs="0"/>
 					<xs:element name="value" type="xs:string"/>
@@ -161,10 +169,8 @@
 	</xs:complexType>
 	<xs:complexType name="ListEntityType">
 		<xs:complexContent>
-			<xs:extension base="ghm:BaseType">
+			<xs:extension base="ghm:PageObjectBaseType">
 				<xs:sequence>
-					<xs:element name="entity_id" type="xs:string"/>
-					<xs:element name="label" type="xs:string" minOccurs="0"/>
 					<xs:element name="data_ord" type="xs:int"/>
 					<xs:element name="key_ord" type="xs:int" minOccurs="0"/>
 					<xs:element name="type" type="ghm:DataTypeEnum" minOccurs="0"/>
@@ -186,10 +192,8 @@
 	</xs:complexType>
 	<xs:complexType name="ListRecordActionType">
 		<xs:complexContent>
-			<xs:extension base="ghm:BaseType">
+			<xs:extension base="ghm:PageObjectBaseType">
 				<xs:sequence>
-					<xs:element name="label" type="xs:string" minOccurs="0"/>
-					<xs:element name="sublabel" type="xs:string" minOccurs="0"/>
 					<xs:element name="image_url" type="xs:string" minOccurs="0"/>
 					<xs:element name="flg_visibility" type="ghm:VisibilityEnum" minOccurs="0"/>
 					<xs:element name="pilot_id" type="xs:string"/>
@@ -203,10 +207,8 @@
 	</xs:complexType>
 	<xs:complexType name="ListButtonType">
 		<xs:complexContent>
-			<xs:extension base="ghm:BaseType">
+			<xs:extension base="ghm:PageObjectBaseType">
 				<xs:sequence>
-					<xs:element name="list_btn_id" type="xs:string"/>
-					<xs:element name="label" type="xs:string" minOccurs="0"/>
 					<xs:element name="image_url" type="xs:string" minOccurs="0"/>
 					<xs:element name="flg_visibility" type="ghm:VisibilityEnum" minOccurs="0"/>
 					<xs:element name="action" type="ghm:ActionType"/>
@@ -216,7 +218,7 @@
 	</xs:complexType>
 	<xs:complexType name="DataListsType">
 		<xs:complexContent>
-			<xs:extension base="ghm:BaseType">
+			<xs:extension base="ghm:ServerBaseTranslateContainerType">
 				<xs:sequence>
 					<xs:element name="lists" type="ghm:ListType" maxOccurs="unbounded"/>
 				</xs:sequence>
@@ -225,7 +227,7 @@
 	</xs:complexType>
 	<xs:complexType name="DataButtonsType">
 		<xs:complexContent>
-			<xs:extension base="ghm:BaseType">
+			<xs:extension base="ghm:ServerBaseTranslateContainerType">
 				<xs:sequence>
 					<xs:element name="buttons" type="ghm:ButtonType" maxOccurs="unbounded"/>
 				</xs:sequence>
@@ -245,9 +247,18 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
+	<xs:complexType name="DataMenuType">
+		<xs:complexContent>
+			<xs:extension base="ghm:ServerBaseTranslateContainerType">
+				<xs:sequence>
+					<xs:element name="menu" type="ghm:MenuType" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
 	<xs:complexType name="MenuType">
 		<xs:complexContent>
-			<xs:extension base="ghm:BaseType">
+			<xs:extension base="ghm:ServerBaseTranslateType">
 				<xs:sequence>
 					<xs:element name="id" type="xs:string"/>
 					<xs:element name="label" type="xs:string"/>
@@ -259,6 +270,64 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
+	<!--translate-->
+	<xs:complexType name="ServerTranslateAttributeType">
+		<xs:complexContent>
+			<xs:extension base="ghm:BaseType">
+				<xs:sequence>
+					<xs:element name="name" type="xs:string"/>
+					<xs:element name="param_prefix" type="xs:string" minOccurs="0"/>
+					<xs:element name="params" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ServerTranslateType">
+		<xs:complexContent>
+			<xs:extension base="ghm:BaseType">
+				<xs:sequence>
+					<xs:element name="ignore" type="xs:boolean" minOccurs="0"/>
+					<xs:choice minOccurs="0">
+						<xs:element name="attribute" type="ghm:ServerTranslateAttributeType" maxOccurs="unbounded"/>
+						<xs:element name="attributeName" type="xs:string" maxOccurs="unbounded"/>
+					</xs:choice>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ServerTranslateContainerType">
+		<xs:complexContent>
+			<xs:extension base="ghm:BaseType">
+				<xs:sequence>
+					<xs:element name="property_name" type="xs:string"/>
+					<xs:choice>
+						<xs:element name="servTranslateObj" type="ghm:ServerTranslateType" minOccurs="0"/>
+						<xs:element name="servTrans" type="xs:boolean" minOccurs="0"/>
+					</xs:choice>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ServerBaseTranslateContainerType">
+		<xs:complexContent>
+			<xs:extension base="ghm:BaseType">
+				<xs:sequence>
+					<xs:element name="servContainerTranslate" type="ghm:ServerTranslateContainerType" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ServerBaseTranslateType">
+		<xs:complexContent>
+			<xs:extension base="ghm:ServerBaseTranslateContainerType">
+				<xs:choice>
+					<xs:element name="servTranslateObj" type="ghm:ServerTranslateType" minOccurs="0"/>
+					<xs:element name="servTrans" type="xs:boolean" minOccurs="0"/>
+				</xs:choice>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!--simple-->
 	<xs:simpleType name="VisibilityEnum">
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="enabled"/>

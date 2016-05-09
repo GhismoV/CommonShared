@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  * <pre>
  * &lt;complexType name="DataListsType">
  *   &lt;complexContent>
- *     &lt;extension base="{msg.jaxb.rest.common.ghismo.it}BaseType">
+ *     &lt;extension base="{msg.jaxb.rest.common.ghismo.it}ServerBaseTranslateContainerType">
  *       &lt;sequence>
  *         &lt;element name="lists" type="{msg.jaxb.rest.common.ghismo.it}ListType" maxOccurs="unbounded"/>
  *       &lt;/sequence>
@@ -33,7 +33,7 @@ import javax.xml.bind.annotation.XmlType;
     "lists"
 })
 public class DataListsType
-    extends BaseType
+    extends ServerBaseTranslateContainerType
 {
 
     @XmlElement(required = true)

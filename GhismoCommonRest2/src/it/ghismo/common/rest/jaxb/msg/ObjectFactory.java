@@ -66,6 +66,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ServerTranslateAttributeType }
+     * 
+     */
+    public ServerTranslateAttributeType createServerTranslateAttributeType() {
+        return new ServerTranslateAttributeType();
+    }
+
+    /**
      * Create an instance of {@link DataButtonsType }
      * 
      */
@@ -90,6 +98,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ServerBaseTranslateType }
+     * 
+     */
+    public ServerBaseTranslateType createServerBaseTranslateType() {
+        return new ServerBaseTranslateType();
+    }
+
+    /**
      * Create an instance of {@link ListEntityType }
      * 
      */
@@ -111,6 +127,14 @@ public class ObjectFactory {
      */
     public MenuType createMenuType() {
         return new MenuType();
+    }
+
+    /**
+     * Create an instance of {@link ServerBaseTranslateContainerType }
+     * 
+     */
+    public ServerBaseTranslateContainerType createServerBaseTranslateContainerType() {
+        return new ServerBaseTranslateContainerType();
     }
 
     /**
@@ -146,6 +170,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ServerTranslateContainerType }
+     * 
+     */
+    public ServerTranslateContainerType createServerTranslateContainerType() {
+        return new ServerTranslateContainerType();
+    }
+
+    /**
      * Create an instance of {@link DataListsType }
      * 
      */
@@ -159,6 +191,22 @@ public class ObjectFactory {
      */
     public OutputType createOutputType() {
         return new OutputType();
+    }
+
+    /**
+     * Create an instance of {@link DataMenuType }
+     * 
+     */
+    public DataMenuType createDataMenuType() {
+        return new DataMenuType();
+    }
+
+    /**
+     * Create an instance of {@link ServerTranslateType }
+     * 
+     */
+    public ServerTranslateType createServerTranslateType() {
+        return new ServerTranslateType();
     }
 
     /**

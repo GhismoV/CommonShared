@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="data_fields" type="{msg.jaxb.rest.common.ghismo.it}DataFieldsType" minOccurs="0"/>
  *         &lt;element name="data_lists" type="{msg.jaxb.rest.common.ghismo.it}DataListsType" minOccurs="0"/>
  *         &lt;element name="data_buttons" type="{msg.jaxb.rest.common.ghismo.it}DataButtonsType" minOccurs="0"/>
- *         &lt;element name="menu" type="{http://www.w3.org/2001/XMLSchema}anyType" minOccurs="0"/>
+ *         &lt;element name="data_menu" type="{msg.jaxb.rest.common.ghismo.it}DataMenuType" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/extension>
  *   &lt;/complexContent>
@@ -48,7 +48,7 @@ import javax.xml.bind.annotation.XmlType;
     "dataFields",
     "dataLists",
     "dataButtons",
-    "menu"
+    "dataMenu"
 })
 public class BeanType
     extends BaseType
@@ -71,7 +71,8 @@ public class BeanType
     protected DataListsType dataLists;
     @XmlElement(name = "data_buttons")
     protected DataButtonsType dataButtons;
-    protected Object menu;
+    @XmlElement(name = "data_menu")
+    protected DataMenuType dataMenu;
 
     /**
      * Gets the value of the errors property.
@@ -295,27 +296,27 @@ public class BeanType
     }
 
     /**
-     * Gets the value of the menu property.
+     * Gets the value of the dataMenu property.
      * 
      * @return
      *     possible object is
-     *     {@link Object }
+     *     {@link DataMenuType }
      *     
      */
-    public Object getMenu() {
-        return menu;
+    public DataMenuType getDataMenu() {
+        return dataMenu;
     }
 
     /**
-     * Sets the value of the menu property.
+     * Sets the value of the dataMenu property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Object }
+     *     {@link DataMenuType }
      *     
      */
-    public void setMenu(Object value) {
-        this.menu = value;
+    public void setDataMenu(DataMenuType value) {
+        this.dataMenu = value;
     }
 
 }
